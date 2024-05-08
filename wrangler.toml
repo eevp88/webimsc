@@ -66,10 +66,22 @@ pages_build_output_dir = "./dist"
 # When using environment-specific overrides for bindings, ALL bindings must be specified on a per-environment basis.
 # Docs: https://developers.cloudflare.com/pages/functions/wrangler-configuration#environment-specific-overrides
 
+[vars]
+API_RESEND = "re_e69rRE1M_65Sd8gEbdyfzihsntqKWv7ui"
+FROM_RESEND ="IMSC Industrial<contacto@imscindustrial.cl>"
+TO_RESEND = "eevp88@gmail.com"
+
+
+
 ######## PREVIEW environment config ########
 
-# [env.preview.vars]
-# API_KEY = "xyz789"
+
+
+
+[env.preview.vars]
+API_RESEND = "re_e69rRE1M_65Sd8gEbdyfzihsntqKWv7ui"
+FROM_RESEND ="IMSC Industrial<contacto@imscindustrial.cl>"
+TO_RESEND = "eevp88@gmail.com"
 
 # [[env.preview.kv_namespaces]]
 # binding = "MY_KV_NAMESPACE"
@@ -77,8 +89,12 @@ pages_build_output_dir = "./dist"
 
 ######## PRODUCTION environment config ########
 
-# [env.production.vars]
-# API_KEY = "abc123"
+[env.production.vars]
+# API_KEY = "abc
+
+API_RESEND = "re_e69rRE1M_65Sd8gEbdyfzihsntqKWv7ui"
+FROM_RESEND ="IMSC Industrial<contacto@imscindustrial.cl>"
+TO_RESEND = "eevp88@gmail.com"
 
 # [[env.production.kv_namespaces]]
 # binding = "MY_KV_NAMESPACE"
