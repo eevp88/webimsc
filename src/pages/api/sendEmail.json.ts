@@ -11,27 +11,45 @@ export const GET: APIRoute = ( context) => {
   }
   
   export const POST: APIRoute = async ( context ) => {
-   
-
     const {API_RESEND, TO_RESEND,FROM_RESEND} = context.locals.runtime.env
-    console.log(context.request)
     const request = context.request
-
     const body = await request.json();
     
     const {  html, subject, text } = body;
     let from =  FROM_RESEND
     let to = TO_RESEND 
-    //let subject = "prueba desde cloudflare"
-    //let html =  "hola mundo!!!" 
-    //let text ="hola mundo" 
     const resend: Resend = new Resend(API_RESEND);
+
+    if ( !html || !subject || !text) {
+        return new Response(null, {
+          status: 404,
+          statusText: "No proporcionó los datos correctos.",
+        });
+    }
+    
     const send = await resend.emails.send({ from , to, subject , html , text});
 
-    return new Response(JSON.stringify({
-        message: "¡Esto es un POST!"
-      })
-    )
+    if (send.data) {
+        return new Response(
+          JSON.stringify({
+            message: send.data,
+          }),
+          {
+            status: 200,
+            statusText: "success",
+          }
+        );
+      } else {
+        return new Response(
+          JSON.stringify({
+            message: send.error,
+          }),
+          {
+            status: 500,
+            statusText: "Internal Server Error",
+          }
+        );
+      }
   }
   
   export const DELETE: APIRoute = ({ request }) => {
