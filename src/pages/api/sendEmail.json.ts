@@ -14,11 +14,17 @@ export const GET: APIRoute = ( context) => {
    
 
     const {API_RESEND, TO_RESEND,FROM_RESEND} = context.locals.runtime.env
+    console.log(context.request)
+    const request = context.request
+
+    const body = await request.json();
+    
+    const {  html, subject, text } = body;
     let from =  FROM_RESEND
     let to = TO_RESEND 
-    let subject = "prueba desde cloudflare"
-    let html =  "hola mundo!!!" 
-    let text ="hola mundo" 
+    //let subject = "prueba desde cloudflare"
+    //let html =  "hola mundo!!!" 
+    //let text ="hola mundo" 
     const resend: Resend = new Resend(API_RESEND);
     const send = await resend.emails.send({ from , to, subject , html , text});
 
