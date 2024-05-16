@@ -52,11 +52,7 @@ const variants = {
               headers: {
                 "Content-Type": "application/json",
               },
-              body: JSON.stringify({
-                subject: `Mensaje de contacto ${formData.get("name")} `,
-                html: json,
-                text: json,
-              }),
+              body: json
             });
             const data = await res.json();
             if (data) {

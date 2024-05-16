@@ -1,5 +1,14 @@
 import type { APIRoute } from "astro"
+import { string } from "astro/zod";
 import { Resend } from 'resend';
+
+interface JsonRequest {
+    // Tus otras propiedades
+   name:string;
+   email:string;
+   message:string;
+   disclaimer:string;
+  }
 
 
 export const GET: APIRoute = ( context) => {
@@ -10,22 +19,27 @@ export const GET: APIRoute = ( context) => {
     )
   }
   
-  export const POST: APIRoute = async ( context ) => {
-    const {API_RESEND, TO_RESEND,FROM_RESEND} = context.locals.runtime.env
-    const request = context.request
-    const body = await request.json();
+  export const POST: APIRoute = async ( { locals , request }) => {
+    const {API_RESEND, TO_RESEND,FROM_RESEND} = locals.runtime.env
+   
+    const data : JsonRequest = await request.json()
+    let {name , email, message, disclaimer } = data
+    let subject= `Mensaje de contacto ${name} `;
     
-    const {  html, subject, text } = body;
-    let from =  FROM_RESEND
-    let to = TO_RESEND 
-    const resend: Resend = new Resend(API_RESEND);
+    let html = JSON.stringify(data)
+    let text = JSON.stringify(data)
+    
 
-    if ( !html || !subject || !text) {
+    if ( !name || !email || !message) {
         return new Response(null, {
           status: 404,
           statusText: "No proporcionó los datos correctos.",
         });
     }
+
+    let from =  FROM_RESEND
+    let to = TO_RESEND 
+    const resend: Resend = new Resend(API_RESEND);
     
     const send = await resend.emails.send({ from , to, subject , html , text});
 
