@@ -70,7 +70,7 @@ import { UI } from '@/consts/ui.ts';
         return;
       }
       document.documentElement.classList.toggle('dark');
-      const logoPath = document.querySelector('#Logo_IMSC > path')
+      const logoPath = document.querySelectorAll('#Logo_IMSC > path')
       localStorage.theme = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
       let className = '' 
       if ( localStorage.theme ==  'dark'){
