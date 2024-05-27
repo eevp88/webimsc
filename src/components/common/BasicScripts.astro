@@ -18,6 +18,21 @@ import { UI } from '@/consts/ui.ts';
     }
   }
 
+ const applyColorLogo = (id)=>{
+ const logoPath = document.querySelectorAll(`#{id} > path`)
+  let className = '' 
+  if ( localStorage.theme ==  'dark'){
+      className = 'lettersWhite'
+  }else{
+       className = 'lettersBack'
+  }
+  logoPath.forEach((path)=> {
+        path.classList = ''
+        path.classList =  className 
+  })
+
+ }
+
   const initTheme = function () {
     if ((defaultTheme && defaultTheme.endsWith(':only')) || (!localStorage.theme && defaultTheme !== 'system')) {
       applyTheme(defaultTheme.replace(':only', ''));
@@ -29,6 +44,7 @@ import { UI } from '@/consts/ui.ts';
     } else {
       applyTheme('light');
     }
+    applyColorLogo('Logo_IMSC')
   };
   initTheme();
 
@@ -70,18 +86,8 @@ import { UI } from '@/consts/ui.ts';
         return;
       }
       document.documentElement.classList.toggle('dark');
-      const logoPath = document.querySelectorAll('#Logo_IMSC > path')
       localStorage.theme = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
-      let className = '' 
-      if ( localStorage.theme ==  'dark'){
-          className = 'lettersWhite'
-      }else{
-           className = 'lettersBack'
-      }
-      logoPath.forEach((path)=> {
-            path.classList = ''
-            path.classList =  className 
-      })
+      applyColorLogo('Logo_IMSC')
     });
 
     attachEvent('[data-aw-social-share]', 'click', function (_, elem) {
