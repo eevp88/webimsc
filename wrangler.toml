@@ -68,8 +68,8 @@ pages_build_output_dir = "./dist"
 
 [vars]
 API_RESEND = "re_e69rRE1M_65Sd8gEbdyfzihsntqKWv7ui"
-FROM_RESEND ="IMSC Industrial<contacto@imscindustrial.cl>"
-TO_RESEND = "eevp88@gmail.com"
+FROM_RESEND ="IMSC Industrial<contactoweb@imscindustrial.cl>"
+TO_RESEND = "evera@imscindustrial.cl"
 
 
 
@@ -80,8 +80,8 @@ TO_RESEND = "eevp88@gmail.com"
 
 [env.preview.vars]
 API_RESEND = "re_e69rRE1M_65Sd8gEbdyfzihsntqKWv7ui"
-FROM_RESEND ="IMSC Industrial<contacto@imscindustrial.cl>"
-TO_RESEND = "eevp88@gmail.com"
+FROM_RESEND ="IMSC Industrial<contactoweb@imscindustrial.cl>"
+TO_RESEND = "evera@imscindustrial.cl"
 
 # [[env.preview.kv_namespaces]]
 # binding = "MY_KV_NAMESPACE"
@@ -93,9 +93,5 @@ TO_RESEND = "eevp88@gmail.com"
 # API_KEY = "abc
 
 API_RESEND = "re_e69rRE1M_65Sd8gEbdyfzihsntqKWv7ui"
-FROM_RESEND ="IMSC Industrial<contacto@imscindustrial.cl>"
-TO_RESEND = "eevp88@gmail.com"
-
-# [[env.production.kv_namespaces]]
-# binding = "MY_KV_NAMESPACE"
-# id = "<PRODUCTION_NAMESPACE_ID>"
+FROM_RESEND ="IMSC Industrial<contactoweb@imscindustrial.cl>"
+TO_RESEND = "evera@imscindustrial.cl"
