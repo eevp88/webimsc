@@ -19,7 +19,7 @@ import { UI } from '@/consts/ui.ts';
   }
 
  const applyColorLogo = (id)=>{
- const logoPath = document.querySelectorAll(`#{id} > path`)
+ const logoPath = document.querySelectorAll(`#${id} > path`)
   let className = '' 
   if ( localStorage.theme ==  'dark'){
       className = 'lettersWhite'
