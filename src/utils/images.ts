@@ -35,12 +35,12 @@ export const findImage = async (
   }
 
   // Relative paths or not "~/assets/"
-  if (!imagePath.startsWith('~/assets/images')) {
+  if (!imagePath.startsWith('@/assets/images')) {
     return imagePath;
   }
 
   const images = await fetchLocalImages();
-  const key = imagePath.replace('~/', '/src/');
+  const key = imagePath.replace('@/', '/src/');
 
   return images && typeof images[key] === 'function'
     ? ((await images[key]()) as { default: ImageMetadata })['default']
