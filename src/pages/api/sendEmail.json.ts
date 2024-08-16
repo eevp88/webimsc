@@ -13,7 +13,7 @@ export const POST: APIRoute = async ({ locals, request }) => {
   const { API_RESEND, TO_RESEND, FROM_RESEND } = locals.runtime.env;
 
   const data: JsonRequest = await request.json();
-  let { name, email, message, disclaimer } = data;
+  let { name, email, message } = data;
   let subject = `Mensaje de contacto ${name} `;
 
   let html = JSON.stringify(data);

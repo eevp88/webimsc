@@ -1,9 +1,9 @@
 ---
 import { Icon } from 'astro-icon/components';
-import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
-import Headline from '~/components/ui/Headline.astro';
-import Button from '~/components/ui/Button.astro';
-import type { Steps as Props } from '~/types';
+import WidgetWrapper from '@/components/ui/WidgetWrapper.astro';
+import Headline from '@/components/common/Headline.astro';
+import Button from '@/components/common/Button.astro';
+import type { Steps as Props } from '@/types/Steps';
 
 const {
   title = await Astro.slots.render('title'),
