@@ -2,10 +2,9 @@ import { getImage } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
 import type { OpenGraph } from '@astrolib/seo';
 
-const load = async function () {
+const load = async function (imageName:string) {
   let images: Record<string, () => Promise<unknown>> | undefined = undefined;
   try {
-    console.log(import.meta)
     images = import.meta.glob('@/assets/images/**/*.{jpeg,jpg,png,tiff,webp,gif,svg,JPEG,JPG,PNG,TIFF,WEBP,GIF,SVG}');
   } catch (e) {
     // continue regardless of error
