@@ -2,7 +2,7 @@
 import Image from '@/components/common/Image.astro';
 
 export interface Props {
-    items?: string[];
+    items?: (string | ImageMetadata)[];
     image?: string | any; // TODO: find HTMLElementProps
 }
 const {
