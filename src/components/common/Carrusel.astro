@@ -1,6 +1,4 @@
 ---
-import Image from '@/components/common/Image.astro';
-
 export interface Props {
     items?: (ImageMetadata)[];
     image?: string | any; // TODO: find HTMLElementProps
@@ -9,9 +7,7 @@ const {
   items = [],
 } = Astro.props;
 
-let loading = false
 
-console.log(items)
 ---
 
 <section>
@@ -23,12 +19,11 @@ console.log(items)
                 console.log(image, index)
                 {
                         <a name={`img_${index}`}>
-                            <Image
+                            <img
                                 src={image.src}
                                 width={`${image.width}px`}
                                 height={`${image.height}px`} 
-                                className="mx-auto rounded-md w-full"
-                                lazyLoading={false}
+                                class="mx-auto rounded-md w-full"
                                 />
                         </a>
                     
@@ -42,9 +37,7 @@ console.log(items)
             {
                 items.map( (url, index) =>{
                     {
-                        
                         <li><a href={`#img_${index}`}></a></li>
-                        
                     }
                 })
             }
