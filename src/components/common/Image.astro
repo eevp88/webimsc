@@ -1,4 +1,6 @@
 ---
+import type { ImageInputFormat } from 'astro';
+
 interface Style {
   width?: string;
   height?: string;
@@ -33,6 +35,7 @@ interface Props {
   animationOptions?: AnimationOptions;
   className?: string;
   lazyLoading?: boolean;
+  format?: ImageInputFormat;
 }
 
 let {

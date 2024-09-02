@@ -22,9 +22,11 @@ let loading = false
                     image  && (
                         <a name={`img_${index}`}>
                             <Image
+                                src={image.src}
+                                width={`${image.width}px`}
+                                height={`${image.height}px`} 
                                 className="mx-auto rounded-md w-full"
-                                lazyLoading= {loading}
-                                {...image}
+                                lazyLoading={false}
                                 />
                         </a>
                     )
