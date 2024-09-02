@@ -17,12 +17,11 @@ console.log(items)
 <section>
 {
     items && (
-      <div class='slider' >
+        <div class='slider' >
         {
             items.map( (image, index) =>{
                 console.log(image, index)
                 {
-                    image  && (
                         <a name={`img_${index}`}>
                             <Image
                                 src={image.src}
@@ -32,7 +31,7 @@ console.log(items)
                                 lazyLoading={false}
                                 />
                         </a>
-                    )
+                    
                 }
             })
 
@@ -43,9 +42,9 @@ console.log(items)
             {
                 items.map( (url, index) =>{
                     {
-                        url  && (
+                        
                         <li><a href={`#img_${index}`}></a></li>
-                        )
+                        
                     }
                 })
             }
@@ -55,9 +54,7 @@ console.log(items)
 }
 
 </section>
-
 <style>
-
     section {
       timeline-scope: --carousel;
     }
