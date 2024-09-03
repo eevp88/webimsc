@@ -1,0 +1,16 @@
+---
+
+const {
+  item = {},
+  id
+} = Astro.props;
+---
+
+<a name={`img_${id}`}>
+    <img
+        src={item.src}
+        width={`${item.width}px`}
+        height={`${item.height}px`}
+        class="mx-auto rounded-md w-full"
+        />
+</a>
