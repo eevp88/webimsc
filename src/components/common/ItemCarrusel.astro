@@ -5,15 +5,25 @@ const {
   id
 } = Astro.props;
 
-console.log(item);
-console.log(Astro.props)
 ---
 
-<a name={`img_${id}`}>
-    <img
-        src={item.src}
-        width={`${item.width}px`}
-        height={`${item.height}px`}
-        class="mx-auto rounded-md w-full"
-        />
+<a name={`img_${id}`} class="block w-4 aspect-square bg-white opacity-75 rounded-full animate-activate animation-timeline-carousel animation-range">
+  <img
+    src={item.src}
+    width={`${item.width/4}px`}
+    height={`${item.height/4}px`}
+    class="object-cover  mx-auto rounded-md w-full"
+    />
 </a>
+
+
+<style>
+    @layer utilities {
+    .animation-timeline-carousel {
+      animation-timeline: var(--carousel);
+    }
+    .animation-range {
+      animation-range: calc((var(--i) - 1) * 25%) calc(var(--i) * 25% + 1px);
+    }
+}
+</style>
