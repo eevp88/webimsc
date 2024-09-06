@@ -5,6 +5,9 @@ export default {
 	content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
 	theme: {
 		extend: {
+			boxShadow: {
+				'custom': '0px 0px 50px 10px rgba(255, 255, 255, .1)',
+			},
 			animation: {
 				activate: 'activate 1s linear infinite',  // Animación personalizada
 			},

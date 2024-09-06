@@ -7,7 +7,7 @@ const {
 
 ---
 
-<a name={`img_${id}`} class="block w-4 aspect-square bg-white opacity-75 rounded-full animate-activate animation-timeline-carousel animation-range">
+<a name={`img_${id}`} class="flex-none w-full snap-center">
   <img
     src={item.src}
     width={`${item.width/4}px`}
@@ -15,15 +15,3 @@ const {
     class="object-cover  mx-auto rounded-md w-full"
     />
 </a>
-
-
-<style>
-    @layer utilities {
-    .animation-timeline-carousel {
-      animation-timeline: var(--carousel);
-    }
-    .animation-range {
-      animation-range: calc((var(--i) - 1) * 25%) calc(var(--i) * 25% + 1px);
-    }
-}
-</style>
