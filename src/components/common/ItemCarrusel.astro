@@ -10,8 +10,8 @@ const {
   <a name={`img_${id}`} class="snap-center">
     <img
       src={item.src}
-      width={`${item.width/8}px`}
-      height={`${item.height/8}px`}
+      width={`${Math.round(item.width/8)}px`}
+      height={`${Math.round(item.height/8)}px`}
       class="object-cover mx-auto rounded-md"
       />
   </a>

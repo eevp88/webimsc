@@ -28,7 +28,7 @@
     "@iconify-json/tabler": "^1.1.111",
     "sharp": "^0.33.4",
     "tailwind-merge": "^2.3.0",
-    "wrangler": "^3.75.0"
+    "wrangler": "^3.79.0"
   },
   "overrides": {
     "esbuild": "^0.21.3"
