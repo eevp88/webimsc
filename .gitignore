@@ -4,6 +4,8 @@ dist/
 # generated types
 .astro/
 
+stitch_inicio_imsc_industrial_spa/
+
 # dependencies
 node_modules/
 
