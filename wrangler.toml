@@ -72,9 +72,12 @@ API_RESEND = "re_e69rRE1M_65Sd8gEbdyfzihsntqKWv7ui"
 FROM_RESEND ="IMSC Industrial<contactoweb@imscindustrial.cl>"
 TO_RESEND = "evera@imscindustrial.cl"
 
-
+[build.environment]
+# Forzar Node 20 en el entorno de build
+NODE_VERSION = "20"
 
 ######## PREVIEW environment config ########
+
 
 
 
@@ -83,6 +86,7 @@ TO_RESEND = "evera@imscindustrial.cl"
 API_RESEND = "re_e69rRE1M_65Sd8gEbdyfzihsntqKWv7ui"
 FROM_RESEND ="IMSC Industrial<contactoweb@imscindustrial.cl>"
 TO_RESEND = "evera@imscindustrial.cl"
+NODE_VERSION="20"
 
 # [[env.preview.kv_namespaces]]
 # binding = "MY_KV_NAMESPACE"
