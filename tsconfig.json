@@ -5,6 +5,7 @@
         "@cloudflare/workers-types/2023-07-01"
     ],
     "baseUrl": ".",
+    "module": "esnext",
     "paths": {
       "@/*":["./src/*"],
     }

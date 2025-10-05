@@ -1,18 +1,32 @@
 ---
+import type { SwiperItem } from "@/types/SwiperItem";
+export interface Props {
+  item: SwiperItem;
+  id: number;
+}
 
-const {
-  item = {},
-  id
-} = Astro.props;
-
+const { item, id } = Astro.props;
 ---
+
 <div class="swiper-slide">
   <a name={`img_${id}`} class="snap-center">
     <img
       src={item.src}
-      width={`${Math.round(item.width/8)}px`}
-      height={`${Math.round(item.height/8)}px`}
-      class="object-cover mx-auto rounded-md"
-      />
+      width={`${Math.round(item.width)}px`}
+      height={`${Math.round(item.height)}px`}
+      alt={`imagen-${id}`}
+      loading="lazy"
+      decoding="async"
+      class="object-cover mx-auto rounded-md normalImg"
+    />
   </a>
 </div>
+
+<style>
+  .normalImg {
+    width: 600px; /* ancho fijo */
+    height: 800px; /* alto fijo */
+    object-fit: cover; /* recorta la imagen manteniendo proporciones */
+    object-position: center; /* centra el recorte */
+  }
+</style>

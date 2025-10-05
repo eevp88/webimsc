@@ -1,51 +1,49 @@
 ---
-import '@/assets/styles/tailwind.css'
-import Header from '@/components/Header.astro';
-import Footer from '@/components/Footer.astro';
-import ApplyColorMode from '@/components/common/ApplyColorMode.astro'
-import BasicScripts from '@/components/common/BasicScripts.astro'
-import CustomStyles from '@/components/CustomStyles.astro';
+import "@/assets/styles/tailwind.css";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+import ApplyColorMode from "@/components/common/ApplyColorMode.astro";
+import BasicScripts from "@/components/common/BasicScripts.astro";
+import CustomStyles from "@/components/CustomStyles.astro";
 
-
-import { headerData , footerData } from '@/consts/navigation'; 
+import { headerData, footerData } from "@/consts/navigation";
 
 interface Props {
-	title: string;
+  title: string;
 }
 
-const showToggleTheme = true
-const isSticky = true
+const showToggleTheme = true;
+const isSticky = true;
 
 const { title } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="es" class="2xl:text-[20px]"> 
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="description" content="Sitio  web de IMSC Industrial" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/blaze.svg" />
-		<CustomStyles/>
-		<ApplyColorMode />
-		<title>{title}</title>
-	</head>
-	<body class="antialiased text-default bg-page tracking-tight">
-		<slot name="header">
-			<Header {...headerData} isSticky  showToggleTheme />
-		</slot>
-		<main class="p-8">
-			<slot />
-		</main>
-		<slot name="footer">
-			<Footer  {...footerData} /> 
-		</slot>
-		<BasicScripts />
-	</body>
+<html lang="es" class="2xl:text-[20px]">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Sitio web de IMSC Industrial SpA" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/blaze.svg" />
+    <CustomStyles />
+    <ApplyColorMode />
+    <title>{title}</title>
+  </head>
+  <body class="antialiased text-default bg-page tracking-tight">
+    <slot name="header">
+      <Header {...headerData} isSticky showToggleTheme />
+    </slot>
+    <main class="flex-grow">
+      <slot />
+    </main>
+    <slot name="footer">
+      <Footer {...footerData} />
+    </slot>
+    <BasicScripts />
+  </body>
 </html>
 <style is:global>
-	
-	img {
-        content-visibility: auto;
-      }
+  img {
+    content-visibility: auto;
+  }
 </style>
