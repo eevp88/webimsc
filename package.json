@@ -2,6 +2,9 @@
   "name": "webimsc",
   "type": "module",
   "version": "0.0.1",
+  "engines": {
+    "node": ">=20.18.1"
+  },
   "scripts": {
     "dev": "wrangler types && astro dev",
     "start": "wrangler types && astro dev",
