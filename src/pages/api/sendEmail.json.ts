@@ -9,6 +9,8 @@ interface JsonRequest {
   disclaimer: string;
 }
 
+console.log(process.env.API_RESEND);
+
 export const POST: APIRoute = async ({ locals, request }) => {
   const { API_RESEND, TO_RESEND, FROM_RESEND } = locals.runtime.env;
 
