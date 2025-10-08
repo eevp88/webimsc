@@ -66,33 +66,3 @@ compatibility_flags = [ "nodejs_compat" ]
 # To use different bindings for preview and production environments, follow the examples below.
 # When using environment-specific overrides for bindings, ALL bindings must be specified on a per-environment basis.
 # Docs: https://developers.cloudflare.com/pages/functions/wrangler-configuration#environment-specific-overrides
-
-[vars]
-API_RESEND = "re_e69rRE1M_65Sd8gEbdyfzihsntqKWv7ui"
-FROM_RESEND ="IMSC Industrial<contactoweb@imscindustrial.cl>"
-TO_RESEND = "evera@imscindustrial.cl"
-
-
-######## PREVIEW environment config ########
-
-
-
-
-
-[env.preview.vars]
-API_RESEND = "re_e69rRE1M_65Sd8gEbdyfzihsntqKWv7ui"
-FROM_RESEND ="IMSC Industrial<contactoweb@imscindustrial.cl>"
-TO_RESEND = "evera@imscindustrial.cl"
-
-# [[env.preview.kv_namespaces]]
-# binding = "MY_KV_NAMESPACE"
-# id = "<PREVIEW_NAMESPACE_ID>"
-
-######## PRODUCTION environment config ########
-
-[env.production.vars]
-# API_KEY = "abc
-
-API_RESEND = "re_e69rRE1M_65Sd8gEbdyfzihsntqKWv7ui"
-FROM_RESEND ="IMSC Industrial<contactoweb@imscindustrial.cl>"
-TO_RESEND = "evera@imscindustrial.cl"

@@ -1,45 +1,38 @@
 ---
-import Layout from '@/layouts/Layout.astro';
-import { SITE } from '@/consts/sitio';
-import HeroText from '@/components/common/HeroText.astro';
-import ContactUs from '@/components/common/Contact.astro';
-import Features from '@/components/common/Features.astro';
+import Layout from "@/layouts/Layout.astro";
+import { SITE } from "@/consts/sitio";
+//import HeroText from "@/components/common/HeroText.astro";
+import ContactUs from "@/components/common/Contact.astro";
+//import Features from "@/components/common/Features.astro";
+import Features2 from "@/components/common/Features2.astro";
 
-
-
-const title = ` Contacto - ${SITE.name}`
+const title = ` Contacto - ${SITE.name}`;
 ---
 
-<Layout title ={title}>
+<Layout title={title}>
+  <!-- <HeroText title="Contactanos" /> -->
 
-  <HeroText title="Contactanos" />
+  <ContactUs title="Envíanos un mensaje" subtitle="" button="Enviar mensaje" />
 
-  <ContactUs
-    title="Envíanos un mensaje"
-    subtitle=""
-    button='Enviar mensaje'
-   
-  />
+  <!--  Features2 Widget ************** -->
 
- <!--  Features2 Widget ************** -->
-
-  <Features
+  <Features2
     title="¡Estamos aquí para ayudar!"
     items={[
       {
-        title: 'Celular',
-        description: '+56984793428',
-        icon: 'tabler:headset',
+        title: "Celular",
+        description: "+56984793428",
+        icon: "tabler:headset",
       },
       {
-        title: 'Email',
-        description: 'contacto@imscindustrial.cl',
-        icon: 'tabler:mail',
+        title: "Email",
+        description: "contacto@imscindustrial.cl",
+        icon: "tabler:mail",
       },
       {
-        title: 'Dirección',
-        description: 'Luis de Toledo N° 102, Villa Picarte 4000, Valdivia',
-        icon: 'tabler:map-pin',
+        title: "Dirección",
+        description: "Luis de Toledo N° 102, Villa Picarte 4000, Valdivia",
+        icon: "tabler:map-pin",
       },
     ]}
   />
