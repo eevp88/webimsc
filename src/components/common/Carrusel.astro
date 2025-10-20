@@ -1,0 +1,79 @@
+---
+import type { SwiperItem } from "@/types/SwiperItem";
+
+import ItemCarrusel from "@/components/common/ItemCarrusel.astro";
+export interface Props {
+  items?: SwiperItem[];
+}
+const { items = [] } = Astro.props;
+---
+
+<section
+  class="relative md:-mt-[76px] not-prose timeline-scope-carousel"
+  id="carrusel_index"
+>
+  <div class="absolute inset-0 pointer-events-none" aria-hidden="true"></div>
+  <div class="py-12 md:py-20">
+    <div
+      class="text-center
+              pb-10 md:pb-16 max-w-5xl mx-auto slider flex flex-row flex-wrap
+              rounded-s w-full aspect-video scroll-timeline-carousel
+              scroll-snap-x scroll-snap-mandatory overscroll-contain
+              scroll-smooth overflow-x-hidden overflow-y-hidden shadow-custom"
+    >
+      {items.map((item, i) => <ItemCarrusel item={item} id={i} />)}
+    </div>
+    <div
+      style="background: radial-gradient(ellipse 80% 80% at 50% -20%,#7877c64d,#fff0); position: absolute; top: 0; width: 100%; height: 100%; left:0; z-index: -1"
+    >
+    </div>
+    <ul
+      class="markers flex flex-row gap-1 list-none text-2xl absolute bottom-20 left-1/2 -translate-x-1/2"
+    >
+      {
+        items.map((item, i) => (
+          <li>
+            <a
+              class="block w-4 aspect-square bg-white opacity-75 rounded-full animate-activate animation-timeline-carousel animation-range"
+              href={`#img_${i}`}
+            />
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
+
+<style>
+  .markers li:nth-child(1) {
+    --i: 1;
+  }
+  .markers li:nth-child(2) {
+    --i: 2;
+  }
+  .markers li:nth-child(3) {
+    --i: 3;
+  }
+  .markers li:nth-child(4) {
+    --i: 4;
+  }
+
+  @layer activate {
+    .timeline-scope-carousel {
+      timeline-scope: var(--carousel);
+    }
+    .scroll-timeline-carousel {
+      scroll-timeline: var(--carousel) x;
+    }
+    .animation-range {
+      animation-range: calc((var(--i) - 1) * 25%) calc(var(--i) * 25% + 1px);
+    }
+  }
+  @keyframes activate {
+    0%,
+    100% {
+      background: #09f;
+      opacity: 1;
+    }
+  }
+</style>

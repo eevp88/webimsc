@@ -1,0 +1,70 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import { SITE } from "@/consts/sitio";
+import Features2 from "@/components/common/Features2.astro";
+import CallToAction from "@/components/common/CallToAction.astro";
+
+const title = ` Nuestros Servicios - ${SITE.name}`;
+---
+
+<Layout title={title}>
+  <Features2
+    title="Nuestros Servicios Industriales"
+    subtitle="En IMSC Industrial SpA ofrecemos un portafolio integral de soluciones para la industria: Mantención de Calderas de Biomasa, Mampostería Refractaria, Sistemas de Bombeo y Ventilación, Diseño y Fabricación de Equipos Industriales, Asesoría y Optimización de Procesos Térmicos."
+    items={[
+      {
+        title: "Mantención de Calderas Industriales",
+        description:
+          "Implementamos soluciones de ingeniería de vanguardia para optimizar procesos y garantizar la eficiencia operativa en cada proyecto.",
+        icon: "material-symbols:local-fire-department-outline-rounded",
+      },
+      {
+        title: "Mampostería Refractaria",
+        description:
+          "Reparación, rediseño y montaje de hogares de calderas industriales. Ladrillos y concretos refractarios, bóvedas y túneles de gases.",
+        icon: "material-symbols:foundation-rounded",
+      },
+      {
+        title: "Sistemas de Bombeo y Ventilación",
+        description:
+          "Mantención y reparación de bombas, ventiladores y sistemas de transporte de fluidos líquidos o gaseosos, garantizando continuidad operacional y reducción de fallas.",
+        icon: "material-symbols:wind-power-outline-rounded",
+      },
+      {
+        title: "Diseño y Fabricación de Equipos Industriales",
+        description:
+          "Procesos de biomasa, Procesos de aserrío, Sistemas de transmisión de potencia, Intercambiadores de calor, multiciclones centrifugos, válvulas rotatorias, tornillos transportadores, trituradores de biomasa y estanques de condensado.",
+        icon: "material-symbols:construction-rounded",
+      },
+
+      {
+        title: "Asesoría y Optimización de Procesos",
+        description:
+          "Evaluación de instalaciones térmicas e industriales, análisis de combustión y eficiencia energética, selección de materiales y propuestas de mejora en seguridad y rendimiento.",
+        icon: "material-symbols:insights",
+      },
+      {
+        title: "Capacitación y Certificación de Operadores",
+        description:
+          "Programas formativos para operadores de calderas, con certificación en cumplimiento de la normativa chilena, asegurando personal capacitado y procesos más seguros.",
+        icon: "material-symbols:shield-outline-rounded",
+      },
+    ]}
+  >
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
+    </Fragment>
+  </Features2>
+
+  <CallToAction
+    actions={[
+      {
+        variant: "primary",
+        text: "Contáctenos",
+        href: "/contact",
+      },
+    ]}
+    title="¿Tiene un proyecto en mente?"
+    subtitle="Permítanos ayudarle a encontrar la solución perfecta para sus necesidades industriales. Contáctenos hoy mismo y dé el primer paso hacia la optimización de sus procesos."
+  />
+</Layout>

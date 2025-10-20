@@ -1,0 +1,74 @@
+---
+import Features2 from "@/components/common/Features2.astro";
+import Features from "@/components/common/Features.astro";
+import Hero from "@/components/common/Hero.astro";
+import Stats from "@/components/common/Stats.astro";
+import Steps2 from "@/components/common/Steps2.astro";
+import Layout from "@/layouts/Layout.astro";
+import { SITE } from "@/consts/sitio";
+
+const title = ` Nosotros - ${SITE.name}`;
+---
+
+<Layout title={title}>
+  <Features2
+    tagline="Nuestra Historia"
+    title="Construyendo Confianza, Entregando Calidad"
+    subtitle="Desde nuestra fundación en Valdivia en 2014, IMSC Industrial SpA ha crecido hasta convertirse en un socio estratégico para la industria, entregando soluciones integrales en mantenimiento e ingeniería con un compromiso inquebrantable con la excelencia."
+    columns={3}
+    isBeforeContent={true}
+    items={[
+      {
+        title: "Misión",
+        description:
+          "Proveer servicios de ingeniería y mantenimiento que satisfagan las necesidades de nuestros clientes, asegurando un desarrollo sustentable, competitivo y seguro en todas nuestras operaciones.",
+        icon: "tabler:briefcase",
+      },
+      {
+        title: "Visión",
+        description:
+          "Ser reconocidos como la empresa líder en mantención industrial a nivel nacional, destacando por la calidad, innovación, seguridad y confiabilidad de nuestros servicios.",
+        icon: "tabler:arrow-bounce",
+      },
+      {
+        title: "Valores",
+        description:
+          "Nuestra cultura se basa en la orientación al cliente, el compromiso con los resultados, el trabajo en equipo, la integridad, la comunicación abierta y la responsabilidad socioambiental.",
+        icon: "tabler:shield-check",
+      },
+    ]}
+  />
+
+  <Features
+    title="Nuestros Valores Fundamentales"
+    subtitle="Estos principios guían cada acción y decisión en IMSC Industrial SpA."
+    columns={2}
+    defaultIcon="tabler:circle-check"
+    items={[
+      {
+        title: "Orientación al cliente",
+        description:
+          "Nos centramos en entender y superar las expectativas de nuestros clientes.",
+      },
+      {
+        title: "Compromiso con los resultados",
+        description: "Buscamos la excelencia y la eficiencia en cada proyecto.",
+      },
+      {
+        title: "Trabajo en equipo",
+        description:
+          "Fomentamos la colaboración para alcanzar objetivos comunes",
+      },
+      {
+        title: "Integridad y comunicación abierta",
+        description:
+          "Actuamos con honestidad y promovemos un diálogo transparente.",
+      },
+      {
+        title: "Responsabilidad",
+        description:
+          "Con la comunidad y el medio ambiente, asegurando un desarrollo sustentable.",
+      },
+    ]}
+  />
+</Layout>

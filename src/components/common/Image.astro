@@ -1,0 +1,128 @@
+---
+import type { ImageInputFormat } from 'astro';
+
+interface Style {
+  width?: string;
+  height?: string;
+}
+
+interface AnimationOptions {
+  src: string;
+  alt: string;
+  id: string;
+  loop: boolean;
+  autoplay: boolean;
+  renderer: string;
+  mode: string;
+  controls: boolean;
+  speed: number;
+}
+
+interface Props {
+  src: string;
+  alt?: string;
+  id?: string;
+  style?: Style;
+  width?: string;
+  height?: string;
+  loop?: boolean;
+  autoplay?: boolean;
+  renderer?: string;
+  mode?: string;
+  controls?: boolean;
+  speed?: number;
+  interactivity?: string;
+  animationOptions?: AnimationOptions;
+  className?: string;
+  lazyLoading?: boolean;
+  format?: ImageInputFormat;
+}
+
+let {
+  src,
+  id,
+  loop,
+  autoplay,
+  renderer,
+  mode,
+  controls,
+  speed,
+  interactivity,
+  alt,
+  lazyLoading = false,
+  width = "auto",
+  height = "auto",
+  style = {
+    width: "auto",
+    height: "auto",
+  },
+  animationOptions = {
+    src,
+    alt,
+    id,
+    loop,
+    autoplay,
+    renderer,
+    mode,
+    controls,
+    speed,
+  },
+  className = "",
+} = Astro.props as Props;
+
+var animation = false;
+
+if (src && src.endsWith("json")) {
+  animation = true;
+  style.width = width;
+  style.height = height;
+}
+
+src = src ?? animationOptions.src ?? "";
+alt = alt ?? animationOptions.alt ?? "Image";
+id = id ?? animationOptions.id;
+loop = loop ?? animationOptions.loop ?? true;
+autoplay = autoplay ?? animationOptions.autoplay ?? true;
+renderer = renderer ?? animationOptions.renderer;
+mode = mode ?? animationOptions.mode;
+controls = controls ?? animationOptions.controls ?? false;
+speed = speed ?? animationOptions.speed;
+
+let styleString = Object.entries(style)
+  .map(([k, v]) => `${k}:${v}`)
+  .join(";");
+
+if (interactivity == "scroll") {
+  loop = false;
+  autoplay = false;
+}
+---
+
+{
+  animation ? (
+    <lottie-player
+      class={`${className} ${interactivity == "scroll" && "lottie-scroll"} lottie lottie-player`}
+      id={id}
+      width={width}
+      height={height}
+      src={src}
+      loop={loop}
+      controls={controls}
+      speed={speed}
+      autoplay={autoplay}
+      renderer={renderer}
+      style={styleString}
+    />
+  ) : (
+    <img
+      class={`${className} image`}
+      id={id}
+      src={src}
+      alt={alt}
+      width={width}
+      height={height}
+      style={styleString}
+      loading={lazyLoading ? "lazy" : 'eager'}
+    />
+  )
+}

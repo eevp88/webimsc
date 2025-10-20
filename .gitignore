@@ -4,10 +4,12 @@ dist/
 # generated types
 .astro/
 
+stitch_inicio_imsc_industrial_spa/
+
 # dependencies
 node_modules/
 
-# logs
+# logsgit 
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
