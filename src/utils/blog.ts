@@ -56,9 +56,6 @@ const getNormalizedPost = async (post: CollectionEntry<'post'>): Promise<Post> =
     draft = false,
     metadata = {},
   } = data;
-    readingTime: remarkPluginFrontmatter?.readingTime,
-  };
-};
 
   const slug = cleanSlug(id); // cleanSlug(rawSlug.split('/').pop());
   const publishDate = new Date(rawPublishDate);
@@ -98,8 +95,11 @@ const getNormalizedPost = async (post: CollectionEntry<'post'>): Promise<Post> =
 };
 
 const load = async function (): Promise<Array<Post>> {
-  const posts = await getCollection('post');
-  const normalizedPosts = posts.map(async (post) => await getNormalizedPost(post));
+  const posts = (await getCollection('post')) as Array<CollectionEntry<'post'>>;
+
+  const normalizedPosts = posts.map(async (post: CollectionEntry<'post'>) =>
+    await getNormalizedPost(post)
+  );
 
   const results = (await Promise.all(normalizedPosts))
     .sort((a, b) => b.publishDate.valueOf() - a.publishDate.valueOf())
@@ -139,13 +139,7 @@ export const findPostsBySlugs = async (slugs: Array<string>): Promise<Array<Post
   if (!Array.isArray(slugs)) return [];
 
   const posts = await fetchPosts();
-
-  return slugs.reduce(function (r: Array<Post>, slug: string) {
-    posts.some(function (post: Post) {
-      return slug === post.slug && r.push(post);
-    });
-    return r;
-  }, []);
+  return posts.filter((post) => slugs.includes(post.slug));
 };
 
 /** */
@@ -153,13 +147,7 @@ export const findPostsByIds = async (ids: Array<string>): Promise<Array<Post>> =
   if (!Array.isArray(ids)) return [];
 
   const posts = await fetchPosts();
-
-  return ids.reduce(function (r: Array<Post>, id: string) {
-    posts.some(function (post: Post) {
-      return id === post.id && r.push(post);
-    });
-    return r;
-  }, []);
+  return posts.filter((post) => ids.includes(post.id));
 };
 
 /** */
@@ -180,7 +168,9 @@ export const getStaticPathsBlogList = async ({ paginate }: { paginate: PaginateF
 };
 
 /** */
-export const getStaticPathsBlogPost = async () => {
+export const getStaticPathsBlogPost = async (): Promise<
+  Array<{ params: { blog: string }; props: { post: Post } }>
+> => {
   if (!isBlogEnabled || !isBlogPostRouteEnabled) return [];
   return (await fetchPosts()).flatMap((post) => ({
     params: {
@@ -195,16 +185,17 @@ export const getStaticPathsBlogCategory = async ({ paginate }: { paginate: Pagin
   if (!isBlogEnabled || !isBlogCategoryRouteEnabled) return [];
 
   const posts = await fetchPosts();
-  const categories = {};
-  posts.map((post) => {
+  const categories: Record<string, { slug: string; title: string }> = {};
+
+  posts.forEach((post) => {
     if (post.category?.slug) {
-      categories[post.category?.slug] = post.category;
+      categories[post.category.slug] = post.category as { slug: string; title: string };
     }
   });
 
   return Array.from(Object.keys(categories)).flatMap((categorySlug) =>
     paginate(
-      posts.filter((post) => post.category?.slug && categorySlug === post.category?.slug),
+      posts.filter((post) => post.category?.slug && categorySlug === post.category.slug),
       {
         params: { category: categorySlug, blog: CATEGORY_BASE || undefined },
         pageSize: blogPostsPerPage,
@@ -219,18 +210,19 @@ export const getStaticPathsBlogTag = async ({ paginate }: { paginate: PaginateFu
   if (!isBlogEnabled || !isBlogTagRouteEnabled) return [];
 
   const posts = await fetchPosts();
-  const tags = {};
-  posts.map((post) => {
+  const tags: Record<string, { slug: string; title: string }> = {};
+
+  posts.forEach((post) => {
     if (Array.isArray(post.tags)) {
-      post.tags.map((tag) => {
-        tags[tag?.slug] = tag;
+      post.tags.forEach((tag) => {
+        if (tag?.slug) tags[tag.slug] = tag as { slug: string; title: string };
       });
     }
   });
 
   return Array.from(Object.keys(tags)).flatMap((tagSlug) =>
     paginate(
-      posts.filter((post) => Array.isArray(post.tags) && post.tags.find((elem) => elem.slug === tagSlug)),
+      posts.filter((post) => Array.isArray(post.tags) && post.tags.some((elem) => elem.slug === tagSlug)),
       {
         params: { tag: tagSlug, blog: TAG_BASE || undefined },
         pageSize: blogPostsPerPage,
