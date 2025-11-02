@@ -23,6 +23,8 @@
     "astro": "^5.14.1",
     "astro-icon": "^1.1.5",
     "astro-seo": "^0.8.4",
+    "limax": "^4.2.1",
+    "lodash.merge": "^4.6.2",
     "resend": "^6.1.2",
     "swiper": "^12.0.2",
     "tailwindcss": "^3.4.18",

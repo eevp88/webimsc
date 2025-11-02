@@ -1,5 +1,7 @@
+import slugify from 'limax';
 import { SITE } from '@/consts/sitio'
 import { trim } from '@/utils/utils';
+import { APP_BLOG } from '@/consts/blog';
 
 export const trimSlash = (s: string) => trim(trim(s, '/'));
 const createPath = (...params: string[]) => {
@@ -11,6 +13,18 @@ const createPath = (...params: string[]) => {
 };
 
 const BASE_PATHNAME = SITE.base || '/';
+
+export const cleanSlug = (text = '') =>
+  trimSlash(text)
+    .split('/')
+    .map((slug) => slugify(slug))
+    .join('/');
+
+export const BLOG_BASE = cleanSlug(APP_BLOG?.list?.pathname);
+export const CATEGORY_BASE = cleanSlug(APP_BLOG?.category?.pathname);
+export const TAG_BASE = cleanSlug(APP_BLOG?.tag?.pathname) || 'tag';
+
+export const POST_PERMALINK_PATTERN = trimSlash(APP_BLOG?.post?.permalink || `${BLOG_BASE}/%slug%`);
 
 
 /** */
@@ -24,17 +38,65 @@ export const getCanonical = (path = ''): string | URL => {
   return url;
 };
 
-/** */
+export const getPermalink = (slug = '', type = 'page'): string => {
+  let permalink: string;
+
+  if (
+    slug.startsWith('https://') ||
+    slug.startsWith('http://') ||
+    slug.startsWith('://') ||
+    slug.startsWith('#') ||
+    slug.startsWith('javascript:')
+  ) {
+    return slug;
+  }
+
+  switch (type) {
+    case 'home':
+      permalink = getHomePermalink();
+      break;
+
+    case 'blog':
+      permalink = getBlogPermalink();
+      break;
+
+    case 'asset':
+      permalink = getAsset(slug);
+      break;
+
+    case 'category':
+      permalink = createPath(CATEGORY_BASE, trimSlash(slug));
+      break;
+
+    case 'tag':
+      permalink = createPath(TAG_BASE, trimSlash(slug));
+      break;
+
+    case 'post':
+      permalink = createPath(trimSlash(slug));
+      break;
+
+    case 'page':
+    default:
+      permalink = createPath(slug);
+      break;
+  }
+
+  return definitivePermalink(permalink);
+};
+
+/* 
+
 export const getPermalink = (slug = ''): string => {
   const permalink: string = createPath(slug);
   return definitivePermalink(permalink);
-};
+}; */
 
 /** */
 export const getHomePermalink = (): string => { return getPermalink('/') };
 
 /** */
-//export const getBlogPermalink = (): string => getPermalink(BLOG_BASE);
+export const getBlogPermalink = (): string => getPermalink(APP_BLOG.base || 'blog');
 
 /** */
 export const getAsset = (path: string): string =>
