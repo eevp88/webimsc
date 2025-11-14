@@ -31,7 +31,6 @@
     "vite": "^7.1.9"
   },
   "devDependencies": {
-    "@cloudflare/workers-types": "^4.20251004.0",
     "@iconify-json/tabler": "^1.2.23",
     "sharp": "^0.34.4",
     "tailwind-merge": "^3.3.1",
