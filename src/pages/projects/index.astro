@@ -1,0 +1,19 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import LatestProjects from "@/components//project/LatestProjects.astro";
+import { SITE } from "@/consts/sitio";
+
+const title = ` Proyectos - ${SITE.name}`;
+---
+
+<Layout title="Proyectos">
+    <LatestProjects
+        id="projects"
+        title="Exploré nuestros proyectos"
+        information={`Dive into a realm of design wisdom and creative inspiration, where you'll find invaluable insights, practical tips, and captivating narratives that elevate and enrich your creative journey.`}
+    >
+        <Fragment slot="bg">
+            <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
+        </Fragment>
+    </LatestProjects>
+</Layout>
