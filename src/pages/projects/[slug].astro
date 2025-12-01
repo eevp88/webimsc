@@ -1,0 +1,43 @@
+---
+import type { GetStaticPaths } from "astro";
+import Layout from "@/layouts/Layout.astro";
+import Button from "@/components/common/Button.astro";
+import { PROJECTS } from "@/consts/projects";
+import { SITE } from "@/consts/sitio";
+import { loadSwiperImages } from "@/utils/loadSwiperImages";
+import { ImageFolder } from "@/types/ImageFolder";
+import Swiper from "@/components/common/Swiper.astro";
+
+export const prerender = true;
+
+export const getStaticPaths = (() => {
+    return PROJECTS.map((project) => ({
+        params: { slug: project.slug },
+    }));
+}) satisfies GetStaticPaths;
+
+const { slug } = Astro.params;
+
+const project = PROJECTS.find((project) => project.slug === slug);
+const pageTitle = `Proyecto ${project?.title} - ${SITE.name}`;
+
+const swiperImages = loadSwiperImages(ImageFolder.Projects, slug);
+---
+
+<Layout title={pageTitle}>
+    <div class="container mx-auto px-4 py-12">
+        <div class="flex items-center justify-between mb-6">
+            <h1 class="text-3xl font-bold mb-4">Proyecto {project?.title}</h1>
+            <Button href="/projects" variant="primary">Regresar</Button>
+        </div>
+        <div class="flex items-center justify-between mb-6">
+            <p>{project?.author}</p>
+        </div>
+        <div class="flex items-center justify-between mb-6">
+            <Swiper items={swiperImages} />
+        </div>
+        <div class="flex items-center justify-between mb-6">
+            <p>{project?.content}</p>
+        </div>
+    </div>
+</Layout>

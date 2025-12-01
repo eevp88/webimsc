@@ -1,3 +1,3 @@
 export enum ImageFolder {
-  Begin = 'begin'
+  Projects = 'projects',
 }

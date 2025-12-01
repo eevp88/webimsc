@@ -1,5 +1,5 @@
 ---
-import Image from "@/components/common/Image.astro";
+import { Image } from "astro:assets";
 import { findImage } from "@/utils/images";
 import { getPermalink } from "@/utils/permalinks";
 import type { Project } from "@/types/Project";
@@ -10,9 +10,12 @@ export interface Props {
 
 const { project } = Astro.props;
 
-const image = await findImage(project.image);
+const pathImagen = `@/assets/images/projects/${project.slug}/${project.image}`;
+
+const image = await findImage(pathImagen);
 
 const link = getPermalink(project.permalink) || "projects";
+console.log(link);
 ---
 
 <article class="mb-6">
@@ -24,28 +27,26 @@ const link = getPermalink(project.permalink) || "projects";
                 (link ? (
                     <a href={link}>
                         <Image
-                            src={image}
+                            src={image as any}
                             class="w-full md:h-full rounded shadow-lg bg-gray-400 dark:bg-slate-700"
                             widths={[400, 900]}
-                            width={400}
+                            width={900}
+                            height={506}
                             sizes="(max-width: 900px) 400px, 900px"
                             alt={project.title}
-                            aspectRatio="16:9"
-                            layout="cover"
                             loading="lazy"
                             decoding="async"
                         />
                     </a>
                 ) : (
                     <Image
-                        src={image}
+                        src={image as any}
                         class="w-full md:h-full rounded shadow-lg bg-gray-400 dark:bg-slate-700"
                         widths={[400, 900]}
                         width={400}
+                        height={225}
                         sizes="(max-width: 900px) 400px, 900px"
                         alt={project.title}
-                        aspectRatio="16:9"
-                        layout="cover"
                         loading="lazy"
                         decoding="async"
                     />

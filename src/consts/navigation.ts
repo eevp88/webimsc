@@ -31,5 +31,5 @@ export const headerData = {
 
 export const footerData = {
   links: links,
-  footNote: `© 2024 IMSC Industrial SpA. Todos los derechos reservados`,
+  footNote: `© 2025 IMSC Industrial SpA. Todos los derechos reservados`,
 };
