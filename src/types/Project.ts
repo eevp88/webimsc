@@ -9,4 +9,5 @@ export interface Project {
     author?: string;
     content?: string;
     readingTime?: string;
+    client?: string;
 }

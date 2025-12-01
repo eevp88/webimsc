@@ -3,14 +3,16 @@ import type { Project } from "@/types/Project";
 export const PROJECTS: Project[] = [
     {
         id: "1",
-        slug: "project-1",
-        permalink: "/projects/project-1",
-        publishDate: '2025-11-25',
+        slug: "hogar-combustion-alonsa",
+        permalink: "/projects/hogar-combustion-alonsa",
+        publishDate: '2023-02',
         updateDate: '2025-11-25',
-        title: "Project 1",
+        title: "Construcción Integral Hogar de Combustión",
         image: "principal.webp",
-        author: "Enzo Vera",
-        content: "lorem ipsum dolor sit amet consectetur adipiscing elit",
+        author: "IMSCIndustrial",
+        content: "Los trabajos realizados consideró, el revestimiento de Mampostería refractaria en Caldera Wyatt Kepeer, que se encuentra actualmente en operación, y consiste en un hogar separado en dos hornos.",
+        client: "Aserraderos Loncoche S.A.",
+
     },
     {
         id: "2",
